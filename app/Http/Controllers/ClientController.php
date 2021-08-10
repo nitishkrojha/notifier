@@ -20,4 +20,14 @@ class ClientController extends Controller
 
         return $client;
     }
+
+    public function list(Request $request)
+    {
+        $request->validate([
+            'page' => 'integer|min:1|max:10',
+            'per_page' => 'integer|min:10|max:25',
+        ]);
+
+        return Client::paginate($request->per_page ?? 10);
+    }
 }

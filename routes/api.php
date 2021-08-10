@@ -21,7 +21,7 @@ use App\Http\Controllers\ClientController;
 // });
 
 Route::post('/clients', [ClientController::class, 'post']);
-// Route::get('/clients', [ClientController::class, 'list']);
+Route::get('/clients', [ClientController::class, 'list']);
 // Route::get('/clients/{id}', [ClientController::class, 'get']);
 // Route::patch('/clients/{id}', [ClientController::class, 'patch']);
 // Route::delete('/clients/{id}', [ClientController::class, 'delete']);
