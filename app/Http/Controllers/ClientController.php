@@ -37,4 +37,39 @@ class ClientController extends Controller
 
         return Client::paginate($request->per_page ?? 10);
     }
+
+    public function get(Request $request, string $id)
+    {
+        // Todo: Make api error response more human friendly.
+        return Client::findOrFail($id);
+    }
+
+    public function patch(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'bail|string|min:3|max:255',
+            'sms_provider_id' => ['bail', 'integer', function ($attribute, $value, $fail) {
+                if (!Sms::isValidProvider($value)) {
+                    $fail('The sms provider id is invalid.');
+                }
+            }]
+        ]);
+
+        $client = Client::findOrFail($id);
+
+        if ($request->has('name')) {
+            $client->name = $request->name;
+        }
+        if ($request->has('sms_provider_id')) {
+            $client->sms_provider_id = $request->sms_provider_id;
+        }
+        $client->save();
+
+        return $client;
+    }
+
+    public function delete(Request $request, string $id)
+    {
+        Client::findOrFail($id)->delete();
+    }
 }
