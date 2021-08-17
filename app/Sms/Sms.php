@@ -4,9 +4,9 @@ namespace App\Sms;
 
 class Sms
 {
-    protected static $availableProviders = [
-        Fast2SmsProvider::class,
+    public static $availableProviders = [
         MockProvider::class,
+        Fast2SmsProvider::class,
     ];
 
     public static function isValidProvider(int $value): bool

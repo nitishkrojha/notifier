@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SmsProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/clients', [ClientController::class, 'list']);
 Route::get('/clients/{id}', [ClientController::class, 'get']);
 Route::patch('/clients/{id}', [ClientController::class, 'patch']);
 Route::delete('/clients/{id}', [ClientController::class, 'delete']);
+
+Route::get('/sms/providers', [SmsProviderController::class, 'list']);
