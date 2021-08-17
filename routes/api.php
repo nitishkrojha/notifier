@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SmsProviderController;
+use App\Http\Controllers\TemplateController;
+use App\Http\Middleware\AuthenticateClient;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,9 @@ Route::patch('/clients/{id}', [ClientController::class, 'patch']);
 Route::delete('/clients/{id}', [ClientController::class, 'delete']);
 
 Route::get('/sms/providers', [SmsProviderController::class, 'list']);
+
+Route::post('/templates', [TemplateController::class, 'post'])->middleware(AuthenticateClient::class);
+Route::get('/templates', [TemplateController::class, 'list'])->middleware(AuthenticateClient::class);
+Route::get('/templates/{id}', [TemplateController::class, 'get'])->middleware(AuthenticateClient::class);
+Route::patch('/templates/{id}', [TemplateController::class, 'patch'])->middleware(AuthenticateClient::class);
+Route::delete('/templates/{id}', [TemplateController::class, 'delete'])->middleware(AuthenticateClient::class);

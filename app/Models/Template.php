@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Template extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -15,8 +15,13 @@ class Client extends Model
         'id',
         'created_at',
         'updated_at',
-        'username',
+        'client_id',
         'name',
-        'sms_provider_id',
+        'text',
     ];
+
+    public function scopeClient($query, Client $client)
+    {
+        return $query->where('client_id', $client->id);
+    }
 }

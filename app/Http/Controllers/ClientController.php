@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Client;
 use App\Sms\Sms;
@@ -12,6 +14,7 @@ class ClientController extends Controller
     public function post(Request $request)
     {
         $request->validate([
+            'username' => 'bail|required|alpha_num|min:3|max:255|unique:clients',
             'name' => 'bail|required|string|min:3|max:255',
             'sms_provider_id' => ['bail', 'required', 'integer', function ($attribute, $value, $fail) {
                 if (!Sms::isValidProvider($value)) {
@@ -21,11 +24,14 @@ class ClientController extends Controller
         ]);
 
         $client = new Client;
+        $client->username = $request->username;
+        $passwordRaw = Str::random(10);
+        $client->password = Hash::make($passwordRaw);
         $client->name = $request->name;
         $client->sms_provider_id = $request->sms_provider_id;
         $client->save();
 
-        return $client;
+        return $client->toArray() + ['password' => $passwordRaw];
     }
 
     public function list(Request $request)
