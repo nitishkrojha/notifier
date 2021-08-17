@@ -4,6 +4,6 @@ namespace App\Sms;
 
 interface Provider
 {
-    static public function getID(): int;
-    static public function getName(): string;
+    public static function getID(): int;
+    public static function getName(): string;
 }

@@ -4,12 +4,12 @@ namespace App\Sms;
 
 class Fast2SmsProvider implements Provider
 {
-    static public function getId(): int
+    public static function getId(): int
     {
         return 2;
     }
 
-    static public function getName(): string
+    public static function getName(): string
     {
         return 'fast2sms';
     }
