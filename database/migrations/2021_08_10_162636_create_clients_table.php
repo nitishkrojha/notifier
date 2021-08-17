@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->unsignedInteger('sms_provider_id');
         });
     }
 
