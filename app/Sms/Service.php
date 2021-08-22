@@ -2,7 +2,7 @@
 
 namespace App\Sms;
 
-class Sms
+class Service
 {
     public static $availableProviders = [
         MockProvider::class,

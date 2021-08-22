@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Client;
-use App\Sms\Sms;
+use App\Sms;
 
 class ClientController extends Controller
 {
@@ -17,7 +17,7 @@ class ClientController extends Controller
             'username' => 'bail|required|alpha_num|min:3|max:255|unique:clients',
             'name' => 'bail|required|string|min:3|max:255',
             'sms_provider_id' => ['bail', 'required', 'integer', function ($attribute, $value, $fail) {
-                if (!Sms::isValidProvider($value)) {
+                if (!Sms\Service::isValidProvider($value)) {
                     $fail('The sms provider id is invalid.');
                 }
             }]
@@ -46,7 +46,7 @@ class ClientController extends Controller
 
     public function get(Request $request, string $id)
     {
-        // Todo: Make api error response more human friendly.
+        // TODO: Make api error response more human friendly.
         return Client::findOrFail($id);
     }
 
@@ -55,7 +55,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'bail|string|min:3|max:255',
             'sms_provider_id' => ['bail', 'integer', function ($attribute, $value, $fail) {
-                if (!Sms::isValidProvider($value)) {
+                if (!Sms\Service::isValidProvider($value)) {
                     $fail('The sms provider id is invalid.');
                 }
             }]

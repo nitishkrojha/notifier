@@ -24,16 +24,16 @@ class CommonSeeder extends Seeder
             'password' => Hash::make('password'),
             'sms_provider_id' => Sms\MockProvider::getId(),
         ]);
-        Template::factory()->for($clientIFlex)->create();
-        Template::factory()->for($clientIFlex)->create();
-
         $clientAtz = Client::factory()->create([
             'name' => 'Atz',
             'username' => 'atz',
             'password' => Hash::make('password'),
             'sms_provider_id' => Sms\Fast2SmsProvider::getId(),
         ]);
-        Template::factory()->for($clientAtz)->create();
-        Template::factory()->for($clientAtz)->create();
+
+        Template::factory()->for($clientIFlex)->create(['text' => 'Hello world']);
+        Template::factory()->for($clientIFlex)->create(['text' => 'Hello {name}! Your otp is for the transaction is {otp}.']);
+        Template::factory()->for($clientAtz)->create(['text' => 'Hello world']);
+        Template::factory()->for($clientAtz)->create(['text' => 'Hello {name}! Your otp is for the transaction is {otp}.']);
     }
 }

@@ -13,7 +13,7 @@ class AuthenticationException extends Exception
      */
     public function report()
     {
-        // Todo
+        // TODO
     }
 
     /**
@@ -24,7 +24,7 @@ class AuthenticationException extends Exception
      */
     public function render($request)
     {
-        // Todo: Fix http response status code.
+        // TODO: Fix http response status code.
         return response()->json(['message' => $this->message]);
     }
 }

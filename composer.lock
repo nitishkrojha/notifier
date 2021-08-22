@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "794432886228e5ed1d3963d002560821",
+    "content-hash": "1abdb032c7e43105f2d6678b97e810d5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1459,6 +1459,46 @@
                 }
             ],
             "time": "2021-07-28T13:16:28+00:00"
+        },
+        {
+            "name": "nicmart/string-template",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicmart/StringTemplate.git",
+                "reference": "d22315ff2c3969148f2a197d1ada429899f20f79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicmart/StringTemplate/zipball/d22315ff2c3969148f2a197d1ada429899f20f79",
+                "reference": "d22315ff2c3969148f2a197d1ada429899f20f79",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2",
+                "phpunit/phpunit": "^8 || ^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StringTemplate\\": "src/StringTemplate/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolò Martini",
+                    "email": "nicmartnic@gmail.com"
+                }
+            ],
+            "description": "StringTemplate is a very simple string template engine for php. I've written it to have a thing like sprintf, but with named and nested substutions.",
+            "time": "2021-04-22T18:14:44+00:00"
         },
         {
             "name": "nikic/php-parser",

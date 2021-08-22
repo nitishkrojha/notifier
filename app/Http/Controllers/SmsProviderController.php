@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Sms\Sms;
+use App\Sms;
 
 class SmsProviderController extends Controller
 {
@@ -12,7 +12,7 @@ class SmsProviderController extends Controller
     {
         $resp = [];
 
-        foreach (Sms::$availableProviders as $provider) {
+        foreach (Sms\Service::$availableProviders as $provider) {
             $resp[] = [
                 'id' => $provider::getId(),
                 'name' => $provider::getName(),
