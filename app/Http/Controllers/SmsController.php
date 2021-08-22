@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Sms\Service;
 use App\Models\Sms;
 use App\Models\Template;
+use App\Jobs\ProcessSms;
 
 class SmsController extends Controller
 {
@@ -38,6 +39,8 @@ class SmsController extends Controller
 
         $sms->save();
 
+        ProcessSms::dispatch($sms);
+
         return $sms;
     }
 
@@ -56,5 +59,10 @@ class SmsController extends Controller
         }
 
         return $qb->paginate($request->per_page ?? 10);
+    }
+
+    public function get(Request $request, string $id)
+    {
+        return Sms::forClient($request->getAuthenticatedClient())->findOrFail($id);
     }
 }
