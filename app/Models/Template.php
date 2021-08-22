@@ -20,7 +20,12 @@ class Template extends Model
         'text',
     ];
 
-    public function scopeClient($query, Client $client)
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function scopeForClient($query, Client $client)
     {
         return $query->where('client_id', $client->id);
     }

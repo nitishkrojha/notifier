@@ -30,12 +30,12 @@ class TemplateController extends Controller
             'per_page' => 'bail|integer|min:10|max:25',
         ]);
 
-        return Template::client($request->getAuthenticatedClient())->paginate($request->per_page ?? 10);
+        return Template::forClient($request->getAuthenticatedClient())->paginate($request->per_page ?? 10);
     }
 
     public function get(Request $request, string $id)
     {
-        return Template::client($request->getAuthenticatedClient())->findOrFail($id);
+        return Template::forClient($request->getAuthenticatedClient())->findOrFail($id);
     }
 
     public function patch(Request $request, string $id)
@@ -45,7 +45,7 @@ class TemplateController extends Controller
             'text' => 'bail|string|min:3|max:255',
         ]);
 
-        $template = Template::client($request->getAuthenticatedClient())->findOrFail($id);
+        $template = Template::forClient($request->getAuthenticatedClient())->findOrFail($id);
 
         if ($request->has('name')) {
             $template->name = $request->name;
@@ -60,6 +60,6 @@ class TemplateController extends Controller
 
     public function delete(Request $request, string $id)
     {
-        Template::client($request->getAuthenticatedClient())->findOrFail($id)->delete();
+        Template::forClient($request->getAuthenticatedClient())->findOrFail($id)->delete();
     }
 }

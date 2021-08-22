@@ -4,17 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Sms;
-use App\Models\Client;
+use App\Models\Template;
 
-class ClientFactory extends Factory
+class TemplateFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Client::class;
+    protected $model = Template::class;
 
     /**
      * Define the model's default state.
@@ -24,10 +23,8 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'username' => $this->faker->unique()->userName(),
-            'password' => 'password',
             'name' => $this->faker->company(),
-            'sms_provider_id' => Sms\MockProvider::getId(),
+            'text' => $this->faker->text(),
         ];
     }
 }
